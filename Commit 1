@@ -1,0 +1,21 @@
+# In[88]:
+
+
+import pandas as pd
+
+
+# In[89]:
+
+
+# Read the CSV file (replace 'dataset.csv' with your actual file name)
+df = pd.read_csv('C:\\Users\\user\\OneDrive\\Documents\\analysis1\\Main Sample.csv')
+
+# Display the first few rows of the DataFrame
+df.head()
+
+
+# In[90]:
+
+
+len(df)
+df.columns
