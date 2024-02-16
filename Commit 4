@@ -1,0 +1,131 @@
+# # What are the characteristics and statistics (in terms of gender, age groups, tenure, etc.) of the customers that are more likely to complain? Provide an informative profile description of those types of customers.
+# 
+
+# In[7]:
+
+
+condition = df[df['Complain']==1]
+
+
+# In[8]:
+
+
+condition
+
+
+# In[9]:
+
+
+gender_counts = df['Gender'].value_counts(normalize=True) * 100
+
+
+# In[14]:
+
+
+sns.set_style('whitegrid')
+ax = sns.barplot(x=gender_counts.index, y=gender_counts.values, palette='Set2')
+for p in ax.patches:
+    height = p.get_height()
+    ax.annotate(f'{height:.1f}%', (p.get_x() + p.get_width() / 2, height),
+                ha='center', va='bottom', fontsize=10)
+
+plt.xlabel('Gender')
+plt.ylabel('Percentage')
+plt.title('Distribution of Genders')
+plt.show()
+
+
+# In[15]:
+
+
+df['Age'].describe()
+
+
+# In[18]:
+
+
+sns.set(style='darkgrid')  # Set a style (optional)
+sns.histplot(data=df, x='Age', bins=20, kde=True)
+plt.xlabel('Median Value of Age for those that complain')
+plt.ylabel('Frequency')
+plt.title('Distribution of Age')
+plt.show()
+
+
+# In[86]:
+
+
+df['Tenure'].describe()
+
+
+# In[ ]:
+
+
+
+
+
+# In[87]:
+
+
+sns.set(style='darkgrid')  # Set a style (optional)
+sns.histplot(data=df, x='Tenure', bins=20, kde=True)
+plt.xlabel('Median Value of tenure for those that complain')
+plt.ylabel('Frequency')
+plt.title('Distribution of Tenure')
+plt.show()
+
+
+# In[19]:
+
+
+df['CreditScore'].describe()
+
+
+# In[20]:
+
+
+sns.set(style='darkgrid')  # Set a style (optional)
+sns.histplot(data=df, x='CreditScore', bins=20, kde=True)
+plt.xlabel('Median Value of credit score for those that complain')
+plt.ylabel('Frequency')
+plt.title('Distribution of credit score')
+plt.show()
+
+
+# In[21]:
+
+
+df['EstimatedSalary'].describe()
+
+
+# In[22]:
+
+
+sns.set(style='darkgrid')  # Set a style (optional)
+sns.histplot(data=df, x='EstimatedSalary', bins=20, kde=True)
+plt.xlabel('Median Value of Estimated salary for those that complain')
+plt.ylabel('Frequency')
+plt.title('Distribution of Estimated Salary')
+plt.show()
+
+
+# In[23]:
+
+
+location_counts = df['Location'].value_counts(normalize=True) * 100
+
+
+# In[26]:
+
+
+sns.set_style('whitegrid')
+ax = sns.barplot(x=location_counts.index, y=location_counts.values, palette='Set2')
+for p in ax.patches:
+    height = p.get_height()
+    ax.annotate(f'{height:.1f}%', (p.get_x() + p.get_width() / 2, height),
+                ha='center', va='bottom', fontsize=10)
+
+plt.xlabel('Location')
+plt.ylabel('Percentage')
+plt.title('Distribution of Location of those who are likely to complain')
+plt.show()
