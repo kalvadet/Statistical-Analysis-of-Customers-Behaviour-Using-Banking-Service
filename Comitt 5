@@ -1,0 +1,56 @@
+# #  Do the satisfaction scores on complaint resolution provide indication of thecustomers’ likelihood of exiting the bank?
+# 
+
+# In[51]:
+
+
+x = df[['Satisfaction Score']]
+y = df['Exited']
+
+
+# In[41]:
+
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
+
+# In[52]:
+
+
+model = LogisticRegression()
+
+
+
+# In[53]:
+
+
+result=model.fit(x, y)
+
+
+# In[54]:
+
+
+print(model.coef_)  # Coefficients
+print(model.intercept_)
+
+
+# In[49]:
+
+
+import statsmodels.api as sm
+
+
+# In[55]:
+
+
+X_train_with_intercept = sm.add_constant(x)
+logit_model = sm.Logit(y, X_train_with_intercept)
+results = logit_model.fit()
+
+# Print the summary
+print(results.summary())
+
+
+# In[ ]:
