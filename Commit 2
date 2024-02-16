@@ -1,0 +1,119 @@
+#What is the proportion of customers that are still using banking services compared to those that have left in the period covered in the dataset? 
+
+# In[73]:
+
+
+df['IsActiveMember']= df['IsActiveMember'].replace({0:'No',1:'Yes'})
+df.head()
+
+
+# In[74]:
+
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+# In[77]:
+
+
+gender_counts = df['IsActiveMember'].value_counts(normalize=True) * 100
+
+
+# In[80]:
+
+
+sns.set_style('whitegrid')
+ax = sns.barplot(x=gender_counts.index, y=gender_counts.values, palette='Set2')
+for p in ax.patches:
+    height = p.get_height()
+    ax.annotate(f'{height:.1f}%', (p.get_x() + p.get_width() / 2, height),
+                ha='center', va='bottom', fontsize=10)
+
+plt.xlabel('frequency distribution of active and non-active member')
+plt.ylabel('Frequency')
+plt.title('Distribution of active and non-active member')
+plt.show()
+
+
+# In[19]:
+
+
+s = pd.Series(df['IsActiveMember'])
+
+
+# In[30]:
+
+
+freq_table = s.value_counts().sort_index()
+
+
+# In[31]:
+
+
+freq_table
+
+
+# In[34]:
+
+
+df = pd.DataFrame({"Is Active Member": freq_table.index, "Frequency": freq_table.values})
+c=df['Frequency']/df['Frequency'].sum()
+
+
+# In[23]:
+
+
+df
+
+
+# In[ ]:
+
+
+
+
+
+# In[91]:
+
+
+df['HasCreditCard']= df['HasCreditCard'].replace({0:'No',1:'Yes'})
+df.head()
+
+
+# In[92]:
+
+
+gender_counts = df['HasCreditCard'].value_counts(normalize=True) * 100
+
+
+# In[93]:
+
+
+sns.set(style="whitegrid")
+
+sns.set_style('whitegrid')
+ax = sns.barplot(x=gender_counts.index, y=gender_counts.values, palette='Set2')
+for p in ax.patches:
+    height = p.get_height()
+    ax.annotate(f'{height:.1f}%', (p.get_x() + p.get_width() / 2, height),
+                ha='center', va='bottom', fontsize=10)
+
+plt.xlabel('frequency distribution of credit card status')
+plt.ylabel('Frequency')
+plt.title('Distribution of credit card status')
+plt.show()
+
+
+# In[51]:
+
+
+s = pd.Series(df['HasCreditCard'])
+freq_table = s.value_counts().sort_index()
+freq_table
+
+
+# In[56]:
+
+
+f=pd.DataFrame({"HasCreditCard": freq_table.index, "Frequency": freq_table.values})
+f['Frequency']/f['Frequency'].sum()
