@@ -1,0 +1,24 @@
+# What is the relationship between the number of complaints received by the bank authorities and the number of exited customers?
+# 
+
+# ### chi square test
+
+# In[57]:
+
+
+from scipy.stats import chi2_contingency
+
+
+# In[58]:
+
+
+contingency_table = pd.crosstab(df['Exited'], df['Complain'])
+
+
+# In[59]:
+
+
+chi2_statistic, p_value, _, _ = chi2_contingency(contingency_table)
+
+print(f"Chi-Square Statistic: {chi2_statistic:.4f}")
+print(f"P-Value: {p_value:.4f}")
